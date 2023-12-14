@@ -153,6 +153,13 @@
         <a-entity arrow="direction: left" position="0 -3.5 0"></a-entity>
       </a-entity>
 
+      <a-entity id="right-electric-field-extra" position="0 8 -10" visible="false">
+        <a-entity arrow="direction: left" position="0 2.25 0"></a-entity>
+        <a-entity arrow="direction: left" position="0 4.5 0"></a-entity>
+        <a-entity arrow="direction: left" position="0 -0.25 0"></a-entity>
+        <a-entity arrow="direction: left" position="0 -2.5 0"></a-entity>
+      </a-entity>
+
 
       <a-entity geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.1"
                 material="color: #3498db" position="0 1 -1.5" rotation="-45 0 0"
@@ -201,11 +208,6 @@
                   event-set__showCorrectBattery="_event: click; _target: #correct-battery; visible: true"
                   event-set__hideIncorrectBattery="_event: click; _target: #incorrect-battery; visible: false"
 
-                  event-set__hideLeftField="_event: click; _target: #left-electric-field; visible: false"
-                  event-set__hideExtraField="_event: click; _target: #left-electric-field-extra; visible: false"
-
-                  event-set__showRightField="_event: click; _target: #right-electric-field; visible: true"
-
                   clickable>
         </a-entity>
         <a-text value="Correctly" scale="0.5 0.5 0.5" position="-0.225 -0.2 0.2">
@@ -228,11 +230,6 @@
 
                   event-set__showIncorrectBattery="_event: click; _target: #incorrect-battery; visible: true;"
                   event-set__hideCorrectBattery="_event: click; _target: #correct-battery; visible: false;"
-
-                  event-set__hideRightField="_event: click; _target: #right-electric-field; visible: false"
-
-                  event-set__showLeftField="_event: click; _target: #left-electric-field; visible: true"
-                  event-set__showExtraField="_event: click; _target: #left-electric-field-extra; visible: true"
 
                   clickable>
         </a-entity>
