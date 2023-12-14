@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>VR junction</title>
+
+    <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script> 
+    <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-particle-system-component@1.0.x/dist/aframe-particle-system-component.min.js"></script>
+    
+    <script src="index.js"></script>
+  </head>
+  <body>
+    <a-scene cursor="rayOrigin: mouse">
+
+      <a-assets>
+        <img
+          id="ground"
+          src="assets/ground/107917491-green-circuit-board-seamless-pattern-texture-high-tech-background-in-digital-computer-technology.jpg"
+        ></img>
+      </a-assets>
+
+      <a-sky color="#FFFFFF"></a-sky>
+
+      <a-entity light="type: ambient; color: #BBB"></a-entity>
+      <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
+
+      <a-cylinder
+        position="-5 8 -10"
+        rotation="0 0 90"
+        scale="5 10 5"
+        metalness="0.2"
+        color="#AAAAAA"
+        theta-start="80"
+        theta-length="180"
+        side="double"
+      >
+        <a-entity hole scale="0.2 0.1 0.2"></a-entity>
+
+        <a-entity position="0.5 0.25 0">
+          <a-entity hole scale="0.2 0.1 0.2" position="0 -0.15 0"></a-entity>
+          <a-entity hole scale="0.2 0.1 0.2" position="-0.2 -0.05 0"></a-entity>
+          <a-entity hole scale="0.2 0.1 0.2" position="0.2 0.05 0"></a-entity>
+          <a-entity hole scale="0.2 0.1 0.2" position="0.4 -0.05 0"></a-entity>
+        </a-entity>
+
+        <a-entity position="0.5 -0.15 0">
+          <a-entity hole id="hole1" scale="0.2 0.1 0.2" position="0 -0.15 0"></a-entity>
+          <a-entity hole id="hole2" scale="0.2 0.1 0.2" position="-0.2 -0.05 0"></a-entity>
+          <a-entity hole scale="0.2 0.1 0.2" position="0.2 0.05 0"></a-entity>
+          <a-entity hole scale="0.2 0.1 0.2" position="0.4 -0.05 0"></a-entity>
+        </a-entity>
+
+        <a-entity position="-0.5 0.25 0">
+          <a-entity hole scale="0.2 0.1 0.2" position="0 -0.15 0"></a-entity>
+          <a-entity hole scale="0.2 0.1 0.2" position="-0.2 -0.05 0"></a-entity>
+          <a-entity hole scale="0.2 0.1 0.2" position="0.2 0.05 0"></a-entity>
+          <a-entity hole scale="0.2 0.1 0.2" position="0.4 -0.05 0"></a-entity>
+        </a-entity>
+
+        <a-entity position="-0.5 -0.15 0">
+          <a-entity hole id="hole3" scale="0.2 0.1 0.2" position="0 -0.15 0"></a-entity>
+          <a-entity hole id="hole4" scale="0.2 0.1 0.2" position="-0.2 -0.05 0"></a-entity>
+          <a-entity hole scale="0.2 0.1 0.2" position="0.2 0.05 0"></a-entity>
+          <a-entity hole scale="0.2 0.1 0.2" position="0.4 -0.05 0"></a-entity>
+        </a-entity>
+        
+        
+      </a-cylinder>
+
+      <a-cylinder
+        position="5 8 -10"
+        rotation="0 0 90"
+        scale="5 10 5"
+        metalness="0.2"
+        color="#AAAAAA"
+        theta-start="80"
+        theta-length="180"
+        side="double"
+      >
+        <a-entity electron scale="0.2 0.1 0.2"></a-entity>
+
+        <a-entity position="0.5 0.25 0">
+          <a-entity electron scale="0.2 0.1 0.2" position="0 -0.15 0"></a-entity>
+          <a-entity electron scale="0.2 0.1 0.2" position="-0.2 -0.05 0"></a-entity>
+          <a-entity electron id="electron1" scale="0.2 0.1 0.2" position="0.2 0.05 0"></a-entity>
+          <a-entity electron id="electron2" scale="0.2 0.1 0.2" position="0.4 -0.05 0"></a-entity>
+        </a-entity>
+
+        <a-entity position="0.5 -0.15 0">
+          <a-entity electron scale="0.2 0.1 0.2" position="0 -0.15 0"></a-entity>
+          <a-entity electron scale="0.2 0.1 0.2" position="-0.2 -0.05 0"></a-entity>
+          <a-entity electron scale="0.2 0.1 0.2" position="0.2 0.05 0"></a-entity>
+          <a-entity electron scale="0.2 0.1 0.2" position="0.4 -0.05 0"></a-entity>
+        </a-entity>
+
+        <a-entity position="-0.5 0.25 0">
+          <a-entity electron scale="0.2 0.1 0.2" position="0 -0.15 0"></a-entity>
+          <a-entity electron scale="0.2 0.1 0.2" position="-0.2 -0.05 0"></a-entity>
+          <a-entity electron id="electron3" scale="0.2 0.1 0.2" position="0.2 0.05 0"></a-entity>
+          <a-entity electron id="electron4" scale="0.2 0.1 0.2" position="0.4 -0.05 0"></a-entity>
+        </a-entity>
+
+        <a-entity position="-0.5 -0.15 0">
+          <a-entity electron scale="0.2 0.1 0.2" position="0 -0.15 0"></a-entity>
+          <a-entity electron scale="0.2 0.1 0.2" position="-0.2 -0.05 0"></a-entity>
+          <a-entity electron scale="0.2 0.1 0.2" position="0.2 0.05 0"></a-entity>
+          <a-entity electron scale="0.2 0.1 0.2" position="0.4 -0.05 0"></a-entity>
+        </a-entity>
+      </a-cylinder>
+
+      <a-entity id="legend" position="0 1 -10">
+        <a-entity id="hole-legend" position="-5 0 0">
+          <a-entity hole position="-2 0 0"></a-entity>
+          <a-text value="Hole" color="#000000" align="center" scale="2 2 2"></a-text>
+        </a-entity>
+        <a-entity id="field-legend" position="0 0 0" visible="false">
+          <a-entity arrow position="-2 0 0" scale="1 0.5 0.5"></a-entity>
+          <a-text value="Electric Field" color="#000000" align="center" scale="2 2 2"></a-text>
+        </a-entity>
+        <a-entity id="electron-legend" position="5 0 0">
+          <a-entity electron rotation="0 0 90"></a-entity>
+          <a-text value="Electron" position="2 0 0" color="#000000" align="center" scale="2 2 2"></a-text>
+        </a-entity>
+      </a-entity>
+
+      <a-text id="main-text" value="Next Stage" color="#000000" 
+              align="center" scale=".8 .8 .8" position="0 1.3 -2">
+      </a-text>
+
+      <a-text id="depletionRegionText" value="Depletion Layer" color="#000000" 
+              align="center" scale="2 2 2" position="0 2 -10" visible="false">
+      </a-text>
+
+      <a-entity id="left-electric-field" position="0 8 -10" visible="false">
+        <a-entity arrow position="0 1.25 0"></a-entity>
+        <a-entity arrow position="0 3.5 0"></a-entity>
+        <a-entity arrow position="0 -1.25 0"></a-entity>
+        <a-entity arrow position="0 -3.5 0"></a-entity>
+      </a-entity>
+
+      <a-entity id="left-electric-field-extra" position="0 8 -10" visible="false">
+        <a-entity arrow position="0 2.25 0"></a-entity>
+        <a-entity arrow position="0 4.5 0"></a-entity>
+        <a-entity arrow position="0 -0.25 0"></a-entity>
+        <a-entity arrow position="0 -2.5 0"></a-entity>
+      </a-entity>
+
+      <a-entity id="right-electric-field" position="0 8 -10" visible="false">
+        <a-entity arrow="direction: left" position="0 1.25 0"></a-entity>
+        <a-entity arrow="direction: left" position="0 3.5 0"></a-entity>
+        <a-entity arrow="direction: left" position="0 -1.25 0"></a-entity>
+        <a-entity arrow="direction: left" position="0 -3.5 0"></a-entity>
+      </a-entity>
+
+
+      <a-entity geometry="primitive: box; width: 0.5; height: 0.5; depth: 0.1"
+                material="color: #3498db" position="0 1 -1.5" rotation="-45 0 0"
+                event-set__enter="_event: mouseenter; material.color: #2980b9"
+                event-set__leave="_event: mouseleave; material.color: #3498db"
+
+                event-set__showDepletionText="_event: click; _target: #depletionRegionText; visible: true"
+
+                event-set__showField="_event: click; _target: #left-electric-field; visible: true"
+                event-set__showFieldLegend="_event: click; _target: #field-legend; visible: true"
+
+                event-set__showButtonCorrect="_event: click; _target: #correct-circuit-button; visible: true"
+                event-set__showButtonIncorrect="_event: click; _target: #incorrect-circuit-button; visible:true"
+
+                event-set__moveHole1="_event: click; _target: #hole1; position: 0.3 -0.5 0"
+                event-set__moveHole2="_event: click; _target: #hole2; position: -0.25 -0.5 0"
+                event-set__moveHole3="_event: click; _target: #hole3; position: 0.3 -0.5 0"
+                event-set__moveHole4="_event: click; _target: #hole4; position: -0.25 -0.5 0"
+
+                event-set__moveElectron1="_event: click; _target: #electron1; position: 0.3 0.4 0"
+                event-set__moveElectron2="_event: click; _target: #electron2; position: -0.25 0.4 0"
+                event-set__moveElectron3="_event: click; _target: #electron3; position: 0.3 0.4 0"
+                event-set__moveElectron4="_event: click; _target: #electron4; position: -0.25 0.4 0"
+
+                event-set__changeText="_event: click; _target: #main-text; value: Put in Circuit"
+
+                event-set__hideSelf="_event: click; position: 0 -5 1.5"
+
+                clickable>
+      </a-entity>
+
+      <a-entity id="correct-circuit-button" position="-1 1 -1.5" rotation="-45 30 0"
+                visible="false">
+        <a-entity geometry="primitive: box; width: 0.6; height: 0.6; depth: 0.1"
+                  material="color: #3498db"
+                  event-set__enter="_event: mouseenter; material.color: #2980b9"
+                  event-set__leave="_event: mouseleave; material.color: #3498db"
+
+                  event-set__showVoltage="_event: click; _target: #counter-container; visible: true"
+                  event-set__showVoltageText="_event: click; _target: #main-text; value: Voltage"
+
+                  event-set__hideDepletionText="_event: click; _target: #depletionRegionText; visible: false"
+
+                  event-set__showCircuit="_event: click; _target: #circuit; visible: true"
+
+                  event-set__showCorrectBattery="_event: click; _target: #correct-battery; visible: true"
+                  event-set__hideIncorrectBattery="_event: click; _target: #incorrect-battery; visible: false"
+
+                  event-set__hideLeftField="_event: click; _target: #left-electric-field; visible: false"
+                  event-set__hideExtraField="_event: click; _target: #left-electric-field-extra; visible: false"
+
+                  event-set__showRightField="_event: click; _target: #right-electric-field; visible: true"
+
+                  clickable>
+        </a-entity>
+        <a-text value="Correctly" scale="0.5 0.5 0.5" position="-0.225 -0.2 0.2">
+        </a-text>
+      </a-entity>
+
+      <a-entity id="incorrect-circuit-button" position="1 1 -1.5" rotation="-45 -30 0"
+                visible="false">
+        <a-entity geometry="primitive: box; width: 0.6; height: 0.6; depth: 0.1"
+                  material="color: #3498db"
+                  event-set__enter="_event: mouseenter; material.color: #2980b9"
+                  event-set__leave="_event: mouseleave; material.color: #3498db"
+
+                  event-set__showVoltage="_event: click; _target: #counter-container; visible: true"
+                  event-set__showVoltageText="_event: click; _target: #main-text; value: Voltage"
+
+                  event-set__hideDepletionText="_event: click; _target: #depletionRegionText; visible: false"
+
+                  event-set__showCircuit="_event: click; _target: #circuit; visible: true"
+
+                  event-set__showIncorrectBattery="_event: click; _target: #incorrect-battery; visible: true;"
+                  event-set__hideCorrectBattery="_event: click; _target: #correct-battery; visible: false;"
+
+                  event-set__hideRightField="_event: click; _target: #right-electric-field; visible: false"
+
+                  event-set__showLeftField="_event: click; _target: #left-electric-field; visible: true"
+                  event-set__showExtraField="_event: click; _target: #left-electric-field-extra; visible: true"
+
+                  clickable>
+        </a-entity>
+        <a-text value="Incorrectly" scale="0.5 0.5 0.5" position="-0.275 -0.2 0.2">
+        </a-text> 
+      </a-entity>
+           
+      <a-entity id="counter-container" position="0 0.8 -1.5" visible="false">
+        <a-entity counter></a-entity>
+        <a-entity id="counterText" text="value: 0; align: center; width: 8; color: #000000">
+        </a-entity>
+
+        <a-entity id="decreaseButton" geometry="primitive: box; width: 0.15; height: 0.1; depth: 0.1"
+                  material="color: #3498db" position="0 -0.4 0"
+                  event-set__enter="_event: mouseenter; material.color: #2980b9"
+                  event-set__leave="_event: mouseleave; material.color: #3498db"
+                  event-set__click="_event: click; decrement: true" clickable>
+        </a-entity>
+
+        <a-entity id="increaseButton" geometry="primitive: box; width: 0.15; height: 0.1; depth: 0.1"
+                  material="color: #3498db" position="0 0.4 0"
+                  event-set__enter="_event: mouseenter; material.color: #2980b9"
+                  event-set__leave="_event: mouseleave; material.color: #3498db"
+                  event-set__click="_event: click; increment: true" clickable>
+        </a-entity>
+      </a-entity>
+
+      <a-entity battery id="correct-battery"  length="1.5" width="0.8" height="0.3" position="0 2 -10" visible="false"></a-entity>
+      <a-entity battery="leftTerminal: -" id="incorrect-battery" length="1.5" width="0.8" height="0.3" position="0 2 -10" visible="false"></a-entity>
+      
+      <a-entity id="circuit" visible="false">
+        <a-entity id="cables">
+          <a-cylinder 
+          position="-5.25 2 -10"
+          color="#000000"
+          height="10.2"
+          rotation="0 0 90"
+          radius="0.1">
+          </a-cylinder>
+          <a-cylinder 
+          position="5.25 2 -10"
+          color="#000000"
+          height="10.2"
+          rotation="0 0 90"
+          radius="0.1">
+          </a-cylinder>
+          <a-cylinder
+          position="-10.35 5.25 -10"
+          color="#000000"
+          height="6.75"
+          radius="0.1">
+          </a-cylinder>
+          <a-cylinder
+          position="10.35 5.25 -10"
+          color="#000000"
+          height="6.75"
+          radius="0.1">
+          </a-cylinder>
+          <a-cylinder
+          position="-10.25 8.75 -10"
+          color="#000000"
+          height="0.5"
+          radius="0.1"
+          rotation="0 0 90">
+          </a-cylinder>
+          <a-cylinder
+          position="10.25 8.75 -10"
+          color="#000000"
+          height="0.5"
+          radius="0.1"
+          rotation="0 0 90">
+          </a-cylinder>
+        </a-entity>
+        <a-cylinder id="resistor" position="5 2 -10" color="#000000" 
+                    radius="0.3" rotation="0 0 90"
+                    light="color: #ff0000; intensity: 0; target: a-plane">
+        </a-cylinder>
+      </a-entity>
+
+      <a-entity id="sparks" visible="false">
+        <a-entity position="-5 4 -10" particle-system="color: #EF0000,#44CC00"></a-entity>
+        <a-entity position="5 4 -10" particle-system="color: #EF0000,#44CC00"></a-entity>
+      </a-entity>
+      
+    
+      <a-plane
+        src="#ground"
+        repeat="100 100 100"
+        scale="40 40 40"
+        rotation="-90 0 0"
+        color="#FFFFFF"
+      ></a-plane>
+    </a-scene>
+  </body>
+</html>
