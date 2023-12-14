@@ -82,8 +82,91 @@ AFRAME.registerComponent("counter", {
     });
   },
   updateCounter(step) {
-    const light = document.getElementById("resistor");
+    const correctCircuitButton = document.getElementById(
+      "correct-circuit-button"
+    );
+    const incorrectCircuitButton = document.getElementById(
+      "incorrect-circuit-button"
+    );
+    const sparks = document.getElementById("sparks");
 
+    let isCorrectBattery =
+      this.el.sceneEl.childNodes[35].components.visible.attrValue;
+
+    this.counterValue += step;
+
+    if (this.counterValue > 1.5) {
+      this.counterValue = 1.5;
+    } else if (this.counterValue >= 1) {
+      this.handleCounterGreaterThanEqualTo1(sparks);
+    } else if (this.counterValue >= 0.7) {
+      this.handleCounterBetween07And1(isCorrectBattery);
+    } else if (this.counterValue > 0) {
+      this.handleCounterBetween0And07(isCorrectBattery);
+    } else if (this.counterValue <= 0) {
+      this.handleCounterLessThanOrEqualTo0();
+    }
+
+    this.updateCounterText();
+  },
+  handleCounterGreaterThanEqualTo1(sparks) {
+    this.isBurned = true;
+    sparks.setAttribute("visible", true);
+    this.setElectricFields(true, true, true, true);
+    this.turnOnLight();
+  },
+  handleCounterBetween07And1(isCorrectBattery) {
+    if (isCorrectBattery) {
+      this.setElectricFields(true, true, false, false);
+      this.turnOnLight();
+    } else {
+      this.setElectricFields(false, false, true, true);
+      this.turnOffLight();
+    }
+    if (this.isBurned) {
+      this.setElectricFields(true, true, true, true);
+      this.turnOnLight();
+    }
+  },
+  handleCounterBetween0And07(isCorrectBattery) {
+    if (isCorrectBattery) {
+      this.setElectricFields(false, true, true, false);
+    } else {
+      this.setElectricFields(false, false, true, true);
+    }
+    this.turnOffLight();
+    if (this.isBurned) {
+      this.setElectricFields(true, false, true, false);
+      this.turnOnLight();
+    }
+  },
+  handleCounterLessThanOrEqualTo0() {
+    this.setElectricFields(false, false, true, false);
+    this.turnOffLight();
+    this.counterValue = 0;
+  },
+  updateCounterText() {
+    this.counterText.setAttribute(
+      "text",
+      "value",
+      this.counterValue.toFixed(1)
+    );
+  },
+  turnOnLight() {
+    const light = document.getElementById("resistor");
+    light.setAttribute(
+      "light",
+      "color: #ff0000; intensity: 2; target: a-plane"
+    );
+  },
+  turnOffLight() {
+    const light = document.getElementById("resistor");
+    light.setAttribute(
+      "light",
+      "color: #ff0000; intensity: 0; target: a-plane"
+    );
+  },
+  setElectricFields(rightVal, rightExtraVal, leftVal, leftExtraVal) {
     const rightElectricField = document.getElementById("right-electric-field");
     const extraRightElectricField = document.getElementById(
       "right-electric-field-extra"
@@ -94,109 +177,10 @@ AFRAME.registerComponent("counter", {
       "left-electric-field-extra"
     );
 
-    const sparks = document.getElementById("sparks");
-
-    console.log(this.el.sceneEl.childNodes);
-
-    this.counterValue += step;
-
-    if (this.counterValue > 1.5) {
-      this.counterValue = 1.5;
-    } else if (this.counterValue >= 1) {
-      rightElectricField.setAttribute("visible", true);
-      extraRightElectricField.setAttribute("visible", true);
-      leftElectricField.setAttribute("visible", true);
-      extraLeftElectricField.setAttribute("visible", true);
-
-      this.isBurned = true;
-
-      sparks.setAttribute("visible", true);
-      light.setAttribute(
-        "light",
-        "color: #ff0000; intensity: 2; target: a-plane"
-      );
-    } else if (this.counterValue >= 0.7) {
-      if (this.el.sceneEl.childNodes[35].components.visible.attrValue) {
-        rightElectricField.setAttribute("visible", true);
-        extraRightElectricField.setAttribute("visible", true);
-
-        leftElectricField.setAttribute("visible", false);
-        extraLeftElectricField.setAttribute("visible", false);
-
-        light.setAttribute(
-          "light",
-          "color: #ff0000; intensity: 2; target: a-plane"
-        );
-      } else {
-        leftElectricField.setAttribute("visible", true);
-        extraLeftElectricField.setAttribute("visible", true);
-
-        rightElectricField.setAttribute("visible", false);
-        extraRightElectricField.setAttribute("visible", false);
-
-        light.setAttribute(
-          "light",
-          "color: #ff0000; intensity: 0; target: a-plane"
-        );
-      }
-      if (this.isBurned) {
-        light.setAttribute(
-          "light",
-          "color: #ff0000; intensity: 2; target: a-plane"
-        );
-        rightElectricField.setAttribute("visible", true);
-        extraRightElectricField.setAttribute("visible", true);
-        leftElectricField.setAttribute("visible", true);
-        extraLeftElectricField.setAttribute("visible", true);
-      }
-    } else if (this.counterValue > 0) {
-      if (this.el.sceneEl.childNodes[35].components.visible.attrValue) {
-        rightElectricField.setAttribute("visible", false);
-        extraRightElectricField.setAttribute("visible", true);
-
-        leftElectricField.setAttribute("visible", true);
-        extraLeftElectricField.setAttribute("visible", false);
-      } else {
-        leftElectricField.setAttribute("visible", true);
-        extraLeftElectricField.setAttribute("visible", true);
-
-        rightElectricField.setAttribute("visible", false);
-        extraRightElectricField.setAttribute("visible", false);
-      }
-      light.setAttribute(
-        "light",
-        "color: #ff0000; intensity: 0; target: a-plane"
-      );
-
-      if (this.isBurned) {
-        light.setAttribute(
-          "light",
-          "color: #ff0000; intensity: 2; target: a-plane"
-        );
-        rightElectricField.setAttribute("visible", true);
-        extraRightElectricField.setAttribute("visible", false);
-        leftElectricField.setAttribute("visible", true);
-        extraLeftElectricField.setAttribute("visible", false);
-      }
-    } else if (this.counterValue <= 0) {
-      rightElectricField.setAttribute("visible", false);
-      extraRightElectricField.setAttribute("visible", false);
-      leftElectricField.setAttribute("visible", true);
-      extraLeftElectricField.setAttribute("visible", false);
-      light.setAttribute(
-        "light",
-        "color: #ff0000; intensity: 0; target: a-plane"
-      );
-      this.counterValue = 0;
-    }
-    this.updateCounterText();
-  },
-  updateCounterText() {
-    this.counterText.setAttribute(
-      "text",
-      "value",
-      this.counterValue.toFixed(1)
-    );
+    rightElectricField.setAttribute("visible", rightVal);
+    extraRightElectricField.setAttribute("visible", rightExtraVal);
+    leftElectricField.setAttribute("visible", leftVal);
+    extraLeftElectricField.setAttribute("visible", leftExtraVal);
   },
 });
 
